@@ -146,6 +146,7 @@ func (handler *TxHandler) Receive(ctx actor.Context) {
 
 					if resp.TxResponse.Code == 32 && resp.TxResponse.Codespace == "sdk" {
 						log.Info().Int("attemptNum", attemptNum).Msg("account sequence mismatch, trying again")
+						time.Sleep(time.Second * 2)
 						attemptNum += 1
 					} else {
 						break
